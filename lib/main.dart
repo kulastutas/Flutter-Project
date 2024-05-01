@@ -62,12 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
           surfaceTintColor: Colors.transparent,
           backgroundColor: Color(0xFFF2F2f2),
           leading: Padding(
-            padding: EdgeInsets.only(left: 15.0),
+            padding: EdgeInsets.fromLTRB(15, 0, 0, 15),
             child: Image.asset('assets/TrabaloLogo.png'),
           ),
+          shape: Border(
+            bottom: BorderSide(
+              color: Colors.black,
+              width: 2
+            )
+          ),
+          elevation: 5,
           actions: [
             Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.fromLTRB(0, 0, 15, 15),
               child: Container(
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
