@@ -1,63 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:trabalo/signup.dart';
+import 'package:trabalo/LoginPage.dart';
 
 import 'home.dart';
 
-// Import the SignupPage class
-void main() {
-  runApp(const login());
-}
-
-class login extends StatelessWidget {
-  const login({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFF2F2f2)),
-        useMaterial3: true,
-      ),
-      home: const MyLoginPage(title: ''),
-    );
-  }
-}
-
-class MyLoginPage extends StatefulWidget {
-  const MyLoginPage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyLoginPage> createState() => _MyLoginPageState();
-}
-
-class _MyLoginPageState extends State<MyLoginPage> {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +36,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       child: Column(
                         children: [
                           Text(
-                            '   LOG IN   ',
+                            '   SIGN UP   ',
                             style: TextStyle(
                               color: Color(0xFFF7B731), // White text color
                               fontSize: 18,
@@ -104,7 +50,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     height: 5,
                   ), // Add space between the login button and input fields
                   SizedBox(
-                    height: 280, // Adjust the height as needed
+                    height: 350, // Adjust the height as needed
                     child: Container(
                       width: 320,
                       padding: EdgeInsets.all(20),
@@ -154,15 +100,35 @@ class _MyLoginPageState extends State<MyLoginPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
-                          ), // Space between password field and "jonald" button
+                            height: 10,
+                          ), // Space between password and confirm password fields
+                          Container(
+                            width: 250,
+                            child: TextFormField(
+                              obscureText: true,
+                              style: TextStyle(fontSize: 12, height: 2),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 15),
+                                hintText: 'Confirm Password',
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ), // Space between confirm password field and "SIGN UP" button
                           ElevatedButton.icon(
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => home()));
-                              // Handle login button press
                             },
                             icon: SizedBox
                                 .shrink(), // No icon, just an empty SizedBox
@@ -184,26 +150,26 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           ),
                           SizedBox(
                             height: 10,
-                          ), // Space between "LOG IN" button and "Create Account" link
+                          ), // Space between "SIGN UP" button and "Already have an account?" text
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignUpPage(),
+                                  builder: (context) => login(),
                                 ),
                               );
                             },
                             child: Text.rich(
                               TextSpan(
-                                text: 'Don\'t have an account? ',
+                                text: 'Already have an account? ',
                                 style: TextStyle(
                                   color: Color(0xff000000),
                                   fontFamily: 'Baloo 2', // Apply Baloo 2 font
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: 'SIGN UP',
+                                    text: 'Log In',
                                     style: TextStyle(
                                       color: Color(0xff000000),
                                       decoration: TextDecoration.underline,
@@ -245,14 +211,14 @@ class _MyLoginPageState extends State<MyLoginPage> {
             ),
           ),
           Positioned(
-            top: 120, // Adjust top position as needed
+            top: 80, // Adjust top position as needed
             width: MediaQuery.of(context).size.width,
             child: Container(
               alignment: Alignment.center,
               child: Image.asset(
                 'assets/TrabaloLogo.png', // Replace 'assets/logo.png' with your logo path
-                width: 150, // Adjust the width as needed
-                height: 150, // Adjust the height as needed
+                width: 220, // Adjust the width as needed
+                height: 180, // Adjust the height as needed
               ),
             ),
           ),

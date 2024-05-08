@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import 'LoginPage.dart';
 import 'home.dart';
 import 'inbox.dart';
 import 'notif.dart';
@@ -221,18 +222,27 @@ class ProfilePage extends StatelessWidget {
                   color: Color(0xFFF2F2F2),
                   child: Container(
                     margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: Row(children: [
-                              Image.asset('assets/logout.png'),
-                              Padding(
-                                  padding: EdgeInsets.only(left: 15),
-                                  child: Text('LOGOUT'))
-                            ])),
-                      ],
-                    ),
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    login()), // Navigate to LoginPage
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Row(children: [
+                                  Image.asset('assets/logout.png'),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 15),
+                                      child: Text('LOGOUT'))
+                                ])),
+                          ],
+                        )),
                   ),
                 ),
               ],
