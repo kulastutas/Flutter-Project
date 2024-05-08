@@ -1,60 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:trabalo/profile.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFF2F2f2)),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: ''),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,28 +14,40 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.fromLTRB(15, 0, 0, 15),
             child: Image.asset('assets/TrabaloLogo.png'),
           ),
-          shape: Border(
-            bottom: BorderSide(
-              color: Colors.black,
-              width: 2
-            )
-          ),
+          shape: Border(bottom: BorderSide(color: Colors.black, width: 2)),
           elevation: 5,
           actions: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 15, 15),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Color(0xff000000),
-                      width: 2.0,
-                    )),
-                child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/pfp.jpg'),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profile()));
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 15, 15),
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Color(0xff000000),
+                        width: 2.0,
+                      )),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/pfp.jpg'),
+                  ),
                 ),
               ),
             )
+          ]),
+      bottomNavigationBar: GNav(
+          backgroundColor: Color.fromARGB(248, 255, 197, 80),
+          onTabChange: (index) {
+            print(index);
+          },
+          tabs: const [
+            GButton(icon: Icons.home, iconSize: 30),
+            GButton(icon: Icons.notifications, iconSize: 30),
+            GButton(icon: Icons.inbox, iconSize: 30),
+            GButton(icon: Icons.library_books, iconSize: 30),
           ]),
       backgroundColor: Color(0xFFF2F2f2),
       body: SingleChildScrollView(
@@ -167,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Container(
-                      child: Column(
+                        child: Column(
                       children: [
                         Container(
                           padding: EdgeInsets.all(10),
@@ -241,7 +202,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                         ),
-
                         SizedBox(height: 20),
                         Container(
                           padding: EdgeInsets.all(10),
