@@ -3,7 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:trabalo/profile.dart';
 
+import 'inbox.dart';
+import 'notif.dart';
+
+void main() {
+  runApp(const home());
+}
+
 class home extends StatelessWidget {
+  const home({super.key});
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        '/home': (context) => home(),
+        '/inbox': (context) => InboxApp(),
+        '/notif': (context) => notif()
+      },
+      home: homePage(title: ''),
+    );
+  }
+}
+
+class homePage extends StatelessWidget {
+  final String title;
+  const homePage({Key? key, required this.title}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +68,16 @@ class home extends StatelessWidget {
           backgroundColor: Color.fromARGB(248, 255, 197, 80),
           onTabChange: (index) {
             print(index);
+            if (index == 0) {
+              Navigator.pushReplacementNamed(context, '/home');
+            }
+
+            if (index == 1) {
+              Navigator.pushReplacementNamed(context, '/notif');
+            }
+            if (index == 2) {
+              Navigator.pushReplacementNamed(context, '/inbox');
+            }
           },
           tabs: const [
             GButton(icon: Icons.home, iconSize: 30),
